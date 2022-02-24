@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5aab2e55-6de2-469d-907e-0eeccca07ccb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/handlers_and_structs/default_handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/constants.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers_and_structs/total_constants.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/defaultHandler.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/diagHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers_and_structs/diag_handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/neighbourunisHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers_and_structs/neighbour_unis_handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/structs.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers_and_structs/complete_structs.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/uniinfoHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers_and_structs/uniinformarion_handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-    </list>
+    <list default="true" id="5aab2e55-6de2-469d-907e-0eeccca07ccb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -20,13 +20,13 @@ func Diag_Handler(w http.ResponseWriter, r *http.Request) {
 			fmt.Errorf("Error in creating request:", err.Error())
 		}
 
+		// Instantiate the client
+		client := &http.Client{}
+
 		req2, err := http.NewRequest(http.MethodGet, secondary_url, nil)
 		if err != nil {
 			fmt.Errorf("Error in creating request:", err.Error())
 		}
-
-		// Instantiate the client
-		client := &http.Client{}
 
 		// Issue request
 		res, err := client.Do(req)
@@ -39,6 +39,9 @@ func Diag_Handler(w http.ResponseWriter, r *http.Request) {
 			fmt.Errorf("Error in response:", err.Error())
 		}
 
+		// Instantiate json_encoder
+		json_encoder := json.NewEncoder(w)
+
 		api_diag := Direct_diag{
 			Version:         "v1",
 			UniversitiesAPI: res.Status,
@@ -46,10 +49,7 @@ func Diag_Handler(w http.ResponseWriter, r *http.Request) {
 			Uptime:          time.Duration(time.Since(Elapsed_Time).Seconds())}
 
 		w.Header().Add("content-type", "application/json")
-
-		// Instantiate json_encoder
-		json_encoder := json.NewEncoder(w)
-
+		
 		// Encode specific content --> Alternative: "err := json.NewEncoder(w).Encode(location)"
 		err = json_encoder.Encode(api_diag)
 		if err != nil {
