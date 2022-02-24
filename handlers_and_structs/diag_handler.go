@@ -49,7 +49,7 @@ func Diag_Handler(w http.ResponseWriter, r *http.Request) {
 			Uptime:          time.Duration(time.Since(Elapsed_Time).Seconds())}
 
 		w.Header().Add("content-type", "application/json")
-		
+
 		// Encode specific content --> Alternative: "err := json.NewEncoder(w).Encode(location)"
 		err = json_encoder.Encode(api_diag)
 		if err != nil {

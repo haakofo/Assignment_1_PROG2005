@@ -94,17 +94,25 @@ func Neighbour_unis_Handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Errorf("Error in creating request:", err.Error())
 	}
 
+	var borders Borders
+
+	country_borders, _ := ioutil.ReadAll(res.Body)
+
 	// Issue request
 	res, err = api_client.Do(req)
 	if err != nil {
 		fmt.Errorf("Error in response:", err.Error())
 	}
 
-	var borders Borders
-
-	country_borders, _ := ioutil.ReadAll(res.Body)
-
 	err = json.Unmarshal(country_borders, &borders)
+	if err != nil {
+		log.Println(err.Error())
+	}
+
+	var country Country
+	county_byte_data, _ := ioutil.ReadAll(res.Body)
+
+	err = json.Unmarshal(county_byte_data, &country)
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -121,14 +129,6 @@ func Neighbour_unis_Handler(w http.ResponseWriter, r *http.Request) {
 		res, err = api_client.Do(req)
 		if err != nil {
 			fmt.Errorf("Error in response:", err.Error())
-		}
-
-		var country Country
-		county_byte_data, _ := ioutil.ReadAll(res.Body)
-
-		err = json.Unmarshal(county_byte_data, &country)
-		if err != nil {
-			log.Println(err.Error())
 		}
 
 		// Create new request
@@ -150,6 +150,12 @@ func Neighbour_unis_Handler(w http.ResponseWriter, r *http.Request) {
 			log.Fatal(err)
 		}
 
+		// Create new request
+		req, err = http.NewRequest(http.MethodGet, "https://restcountries.com/v3.1/alpha/"+borders.Isocodes[i]+"?fields=maps,languages", nil)
+		if err != nil {
+			fmt.Errorf("There was an error in creating request:", err.Error())
+		}
+
 		for json_decoder.More() {
 			var uniinfo Complete_Unifinfo
 			err = json_decoder.Decode(&uniinfo)
@@ -157,14 +163,7 @@ func Neighbour_unis_Handler(w http.ResponseWriter, r *http.Request) {
 				log.Fatal(err)
 			}
 
-			// Create new request
-			req, err = http.NewRequest(http.MethodGet, "https://restcountries.com/v3.1/alpha/"+borders.Isocodes[i]+"?fields=maps,languages", nil)
-			if err != nil {
-				fmt.Errorf("There was an error in creating request:", err.Error())
-			}
-
 			// Issue request
-
 			res, err = api_client.Do(req)
 			if err != nil {
 				fmt.Errorf("There was an error in response:", err.Error())
